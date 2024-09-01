@@ -1,10 +1,10 @@
-package com.JacrMaster.controllers;
+package com.JacrMaster.presentation.controllers;
 
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
-public class TestAuthController {
+@RequestMapping("/method")
+public class TextController {
     @GetMapping("/get")
     public String helloGet(){
         return "Hello World - GET";
