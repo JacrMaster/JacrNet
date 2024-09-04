@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
                     // EndPoints publicos
-                    http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/auth/log-in").permitAll();
                     // EndPoints Privados
                     http.requestMatchers(HttpMethod.GET, "/method/get").hasAuthority("READ");
                     http.requestMatchers(HttpMethod.POST, "/method/post").hasAuthority("CREATE");

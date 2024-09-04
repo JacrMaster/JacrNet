@@ -1,6 +1,5 @@
 package com.JacrMaster.presentation.controllers;
 
-import com.JacrMaster.presentation.dto.AuthCreateUserRequest;
 import com.JacrMaster.presentation.dto.AuthLoginRequest;
 import com.JacrMaster.presentation.dto.AuthResponse;
 import com.JacrMaster.services.user.UserDetailServiceImpl;
@@ -18,11 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     @Autowired
     private UserDetailServiceImpl userDetailService;
-
-    @PostMapping("/sign-up")
-    public ResponseEntity<AuthResponse> register(@RequestBody @Valid AuthCreateUserRequest userRequest){
-        return new ResponseEntity<>(this.userDetailService.createUser(userRequest), HttpStatus.CREATED);
-    }
 
     @PostMapping("/log-in")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthLoginRequest userRequest){
