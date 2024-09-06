@@ -38,11 +38,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(http -> {
                     // EndPoints publicos
                     http.requestMatchers(HttpMethod.POST, "/auth/log-in").permitAll();
+
                     // EndPoints Privados
-                    http.requestMatchers(HttpMethod.GET, "/method/get").hasAuthority("READ");
-                    http.requestMatchers(HttpMethod.POST, "/method/post").hasAuthority("CREATE");
-                    http.requestMatchers(HttpMethod.DELETE, "/method/delete").hasAuthority("DELETE");
-                    http.requestMatchers(HttpMethod.PUT, "/method/put").hasAuthority("UPDATE");
+                    http.requestMatchers(HttpMethod.POST, "/api/v1/clients/add").hasAuthority("CREATE");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/v1/clients/customer/{id}").hasAuthority("DELETE");
+                    http.requestMatchers(HttpMethod.GET, "/api/v1/clients/all").hasAuthority("READ");
+                    http.requestMatchers(HttpMethod.PUT, "/api/v1/clients/customer/{id}").hasAuthority("UPDATE");
 
                     http.anyRequest().denyAll();
                 })
