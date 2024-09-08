@@ -45,6 +45,11 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.GET, "/api/v1/clients/all").hasAuthority("READ");
                     http.requestMatchers(HttpMethod.PUT, "/api/v1/clients/customer/{id}").hasAuthority("UPDATE");
 
+                    http.requestMatchers(HttpMethod.POST, "/api/v1/products/add").hasAuthority("CREATE");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/v1/products/product/{id}").hasAuthority("DELETE");
+                    http.requestMatchers(HttpMethod.GET, "/api/v1/products/all").hasAuthority("READ");
+                    http.requestMatchers(HttpMethod.PUT, "/api/v1/products/product/{id}").hasAuthority("UPDATE");
+
                     http.anyRequest().denyAll();
                 })
                 .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)
