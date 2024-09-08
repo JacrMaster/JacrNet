@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 public class CustomerDTO {
     private Long id;
-    @NotBlank(message = "El nombre electrónico es obligatorio")
+    @NotBlank(message = "El nombre es obligatorio")
     private String name;
     @NotBlank(message = "El número de teléfono es obligatorio")
     @Pattern(regexp = "\\d{10}", message = "El número de teléfono debe tener 10 dígitos")
