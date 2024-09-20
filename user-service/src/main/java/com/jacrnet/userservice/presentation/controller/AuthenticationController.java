@@ -1,7 +1,6 @@
 package com.jacrnet.userservice.presentation.controller;
 
-import com.jacrnet.userservice.presentation.dto.AuthLoginRequest;
-import com.jacrnet.userservice.presentation.dto.AuthResponse;
+import com.jacrnet.userservice.presentation.dto.*;
 import com.jacrnet.userservice.service.UserDetailServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
