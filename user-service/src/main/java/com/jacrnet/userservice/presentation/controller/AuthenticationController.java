@@ -15,7 +15,6 @@ public class AuthenticationController {
     private UserDetailServiceImpl userDetailService;
 
     @PostMapping("/log-in")
-    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthLoginRequest userRequest){
         return new ResponseEntity<>(this.userDetailService.loginUser(userRequest), HttpStatus.OK);
     }
