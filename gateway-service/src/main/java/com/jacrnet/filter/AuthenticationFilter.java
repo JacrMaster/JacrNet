@@ -27,7 +27,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     static {
         routeAuthoritiesMap.put("/plans/all", List.of("READ"));
         routeAuthoritiesMap.put("/plans/add", List.of("CREATE"));
-        // Añadir más rutas y autoridades requeridas aquí
+        routeAuthoritiesMap.put("/plans/update/id", List.of("UPDATE"));
+        routeAuthoritiesMap.put("/plans/delete/id", List.of("DELETE"));
     }
 
     public AuthenticationFilter() {
