@@ -11,10 +11,20 @@ spring:
         locator:
           enabled: true
       routes:
+          #user service
         - id: user-service
           uri: http://localhost:8090
           predicates:
             - Path=/auth/**
+          #plans service
+        - id: plans-service
+          uri: http://localhost:9090
+          predicates:
+            - Path=/plans/**
+          filters:
+           # - StripPrefix=1 # Remueve el prefijo '/plans' para enviar correctamente la solicitud al servicio
+            - name: AuthenticationFilter
+
 
 eureka:
   instance:

@@ -20,6 +20,7 @@
 		<module>user-service</module>
 		<module> eureka-service</module>
 		<module>gateway-service</module>
+		<module> plans-service</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

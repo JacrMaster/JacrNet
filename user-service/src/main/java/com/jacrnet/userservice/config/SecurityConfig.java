@@ -42,7 +42,7 @@ public class SecurityConfig {
                 //.cors(c -> c.configurationSource(corsConfigurationSource()))  // CORS habilitado
                 .authorizeHttpRequests(http -> {
                     // EndPoints publicos
-                    http.requestMatchers(HttpMethod.POST, "/auth/log-in").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
 
 
                     http.anyRequest().denyAll();
