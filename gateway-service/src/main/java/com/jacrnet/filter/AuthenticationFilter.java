@@ -4,6 +4,7 @@ package com.jacrnet.filter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.jacrnet.dto.TokenValidationRequest;
+import com.jacrnet.exception.TokenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -47,7 +48,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
             String requestPath = exchange.getRequest().getURI().getPath();
 
             if (token == null) {
-                return Mono.error(new RuntimeException("Missing Authorization Header"));
+                return Mono.error(new TokenException("Missing Authorization Header"));
             }
 
 
@@ -58,7 +59,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     .bodyValue(new TokenValidationRequest(token))
                     .retrieve()
                     .onStatus(httpStatus -> httpStatus.is4xxClientError() || httpStatus.is5xxServerError(),
-                            clientResponse -> Mono.error(new RuntimeException("Invalid Token")))
+                            clientResponse -> Mono.error(new TokenException("Invalid Token")))
                     .bodyToMono(Void.class)
                     .then(Mono.defer(() -> {
 
@@ -69,7 +70,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                         List<String> requiredAuthorities = routeAuthoritiesMap.get(requestPath);
 
                         if (requiredAuthorities != null && !userAuthorities.containsAll(requiredAuthorities)) {
-                            return Mono.error(new RuntimeException("Unauthorized"));
+                            return Mono.error(new TokenException("Unauthorized"));
                         }
 
                         return chain.filter(exchange);
