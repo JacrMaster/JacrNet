@@ -24,6 +24,7 @@ public class PlanServiceImpl implements IPlanService{
         PlanEntity plan = modelMapper.map(planDTO, PlanEntity.class);
         PlanEntity planSaved = planRepository.save(plan);
         return modelMapper.map(planSaved, PlanDTO.class);
+
     }
 
     @Override

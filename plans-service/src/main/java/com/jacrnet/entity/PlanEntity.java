@@ -24,4 +24,5 @@ public class PlanEntity {
     @Column(name = "installation_price")
     private BigDecimal installationPrice;
     private String description;
+
 }

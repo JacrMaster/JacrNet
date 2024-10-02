@@ -2,6 +2,7 @@ package com.jacrnet.presentation.controller;
 
 import com.jacrnet.presentation.dto.PlanDTO;
 import com.jacrnet.service.IPlanService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class PlanController {
     private IPlanService planService;
 
     @PostMapping("/add")
-    public ResponseEntity<PlanDTO> addPlan(@RequestBody PlanDTO planDTO){
+    public ResponseEntity<PlanDTO> addPlan(@RequestBody @Valid PlanDTO planDTO){
         return new ResponseEntity<>(planService.addPlan(planDTO), HttpStatus.CREATED);
     }
     @GetMapping("/all")
@@ -25,7 +26,7 @@ public class PlanController {
         return new ResponseEntity<>(planService.findAll(), HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updatePlan(@PathVariable Long id, @RequestBody PlanDTO planDTO){
+    public ResponseEntity<?> updatePlan(@PathVariable Long id, @Valid @RequestBody PlanDTO planDTO){
         return new ResponseEntity<>(planService.updatePlan(id, planDTO), HttpStatus.OK);
     }
 

@@ -30,7 +30,7 @@ public class AuthenticationController {
             // Validar el token usando jwtUtils
             DecodedJWT decodedJWT = jwtUtils.validateToken(tokenValidationRequest.getToken());
             return ResponseEntity.ok().build();  // Si es válido, responder 200 OK
-        } catch (JWTVerificationException e) {
+                       } catch (JWTVerificationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();  // Si no es válido, retornar 401 Unauthorized
         }
     }
